@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Maven tests",
+      "setup": "",
+      "run": "mvn test",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "Gradle tests",
+      "setup": "",
+      "run": "gradle test",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "Main execution (PizzaTestDrive)",
+      "setup": "mvn install",
+      "run": "java -jar target/pizzeria.jar",
+      "input": "",
+      "output": "Preparation of Pizza with Brest style sauce and cheese\r\nSpread the pizza dough...\r\nAdd the sauce...\r\nAdd the garnitures:\r\n Parmigiano reggiano\r\nBake 25 minutes at 180 degrees\r\nCut the pizza in triangles\r\nPut the pizza in the official box\r\nJMB has ordered a Pizza with Brest style sauce and cheese\r\n\r\nPreparation of Pizza Strasbourg style with cheese\r\nSpread the pizza dough...\r\nAdd the sauce...\r\nAdd the garnitures:\r\n Mozzarella\r\nBake 25 minutes at 180 degrees\r\nCut in square portions\r\nPut the pizza in the official box\r\nJMI has ordered a Pizza Strasbourg style with cheese",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "Fix #0 and Check Model",
+      "setup": "sudo apt install bundler",
+      "run": "bundle install && bundle exec rake",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    }
+  ]
+}
