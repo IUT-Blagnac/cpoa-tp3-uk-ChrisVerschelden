@@ -17,7 +17,7 @@ public class PizzaFactoryBrest extends PizzaFactory {
         Pizza pizza = null;
         switch(name){
             case "cheese":
-                pizza = new PizzaCheeseStyleStrasbourg();
+                pizza = new PizzaCheeseStyleBrest();
                 break;
             default:
                 System.out.println("no corresponding pizza");

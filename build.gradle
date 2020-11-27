@@ -25,6 +25,15 @@ plugins {
     id "com.github.roroche.plantuml" version "1.0.2"
 }
 
+apply plugin:'java'
+apply plugin: 'java-library-distribution'
+
+
+repositories {
+    mavenCentral()
+}
+
+
 sourceSets {
     main {
          java {
@@ -32,10 +41,17 @@ sourceSets {
             excludes = ['test']
          }
     }
+    test {
+        java {
+            srcDirs = ['src/test']
+        }
+    }
 }
+
 dependencies {
     testImplementation 'junit:junit:4.13'
 }
+
 jar {
     manifest {
         attributes 'Main-Class': 'app/PizzaTestDrive'
