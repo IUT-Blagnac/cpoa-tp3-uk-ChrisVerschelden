@@ -41,7 +41,7 @@ jar {
         attributes 'Main-Class': 'app/PizzaTestDrive'
     }
 }
-
+ 
 apply plugin: "com.github.roroche.plantuml"
 
 classDiagram { // (1)
