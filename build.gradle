@@ -45,6 +45,7 @@ jar {
 apply plugin: "com.github.roroche.plantuml"
 
 classDiagram { // (1)
-    packageName = "java" // (2)
-    outputFile = project.file('doc/TP1.plantuml')
+    packageName = "app" // (2)
+    outputFile = project.file('docs/TP1.plantuml')
 }
+  

@@ -3,7 +3,6 @@ package app;
 public class PizzeriaFactory {
 
     protected static PizzeriaFactory uniqueInstance = new PizzeriaFactory();
-    protected Pizza pizza;
 
     private PizzeriaFactory() {}
 
