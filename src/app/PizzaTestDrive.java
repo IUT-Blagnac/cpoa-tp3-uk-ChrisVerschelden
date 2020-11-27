@@ -6,9 +6,8 @@ package app;
 public class PizzaTestDrive {
     public static void main(String[] args) {
         PizzeriaFactory f1 = PizzeriaFactory.getInstance();
-        PizzeriaFactory f2 = PizzeriaFactory.getInstance();
         Pizzeria shopFromBrest = f1.create("Brest");
-        Pizzeria shopFromStrasbourg = f2.create("Strasbourg");
+        Pizzeria shopFromStrasbourg = f1.create("Strasbourg");
 
         Pizza pizza = shopFromBrest.orderPizza("cheese");
         System.out.println("JMB has ordered a " + pizza.getName() + "\n");
