@@ -1,4 +1,43 @@
 @startuml
+class PizzaTestDrive [[java:app.PizzaTestDrive]] {
+	+{static}void main(String[] args)
+}
+class PizzeriaStrasbourg [[java:app.PizzeriaStrasbourg]] {
+	~PizzeriaStrasbourg(PizzaFactory pizzaFactory)
+}
+class Pizzeria [[java:app.Pizzeria]] {
+}
+Pizzeria <|-- PizzeriaStrasbourg
+class PizzeriaBrest [[java:app.PizzeriaBrest]] {
+	~PizzeriaBrest(PizzaFactory pizzaFactory)
+}
+class Pizzeria [[java:app.Pizzeria]] {
+}
+Pizzeria <|-- PizzeriaBrest
+class PizzaCheeseStyleStrasbourg [[java:app.PizzaCheeseStyleStrasbourg]] {
+	~PizzaCheeseStyleStrasbourg()
+	+String getName()
+	+void cut()
+}
+class Pizza [[java:app.Pizza]] {
+}
+Pizza <|-- PizzaCheeseStyleStrasbourg
+class PizzaCheeseStyleBrest [[java:app.PizzaCheeseStyleBrest]] {
+	~PizzaCheeseStyleBrest()
+	+String getName()
+}
+class Pizza [[java:app.Pizza]] {
+}
+Pizza <|-- PizzaCheeseStyleBrest
+class PizzeriaFactory [[java:app.PizzeriaFactory]] {
+	#{static}PizzeriaFactory uniqueInstance
+	-PizzeriaFactory()
+	+Pizzeria create(String pPizzeriaName)
+	+{static}PizzeriaFactory getInstance()
+}
+abstract class PizzaFactory [[java:app.PizzaFactory]] {
+	+Pizza create(String name)
+}
 abstract class Pizza [[java:app.Pizza]] {
 	#String name
 	#String crust
@@ -10,24 +49,13 @@ abstract class Pizza [[java:app.Pizza]] {
 	+void wrap()
 	+String getName()
 }
-class PizzaCheeseStyleBrest [[java:app.PizzaCheeseStyleBrest]] {
-	~PizzaCheeseStyleBrest()
-	+String getName()
+abstract class Pizzeria [[java:app.Pizzeria]] {
+	+Pizza orderPizza(String type)
+	#Pizza createPizza(String type)
 }
-class Pizza [[java:app.Pizza]] {
-}
-Pizza <|-- PizzaCheeseStyleBrest
-class PizzaCheeseStyleStrasbourg [[java:app.PizzaCheeseStyleStrasbourg]] {
-	~PizzaCheeseStyleStrasbourg()
-	+String getName()
-	+void cut()
-}
-class Pizza [[java:app.Pizza]] {
-}
-Pizza <|-- PizzaCheeseStyleStrasbourg
 class PizzaFactory [[java:app.PizzaFactory]] {
-	+Pizza create(String name)
 }
+Pizzeria --> "1" PizzaFactory : pizzaFactory
 class PizzaFactoryBrest [[java:app.PizzaFactoryBrest]] {
 	#{static}PizzaFactoryBrest uniqueInstance
 	-PizzaFactoryBrest()
@@ -46,36 +74,16 @@ class PizzaFactoryStrasbourg [[java:app.PizzaFactoryStrasbourg]] {
 class PizzaFactory [[java:app.PizzaFactory]] {
 }
 PizzaFactory <|-- PizzaFactoryStrasbourg
-class PizzaTestDrive [[java:app.PizzaTestDrive]] {
-	+{static}void main(String[] args)
-}
-abstract class Pizzeria [[java:app.Pizzeria]] {
-	~Pizzeria(PizzaFactory pizzaFactory)
-	+Pizza orderPizza(String name)
-	+void create(String pizzaName)
-	#Pizza createPizza(Pizza pizza)
-}
-class PizzeriaBrest [[java:app.PizzeriaBrest]] {
-	~PizzeriaBrest(PizzaFactory pizzaFactory)
-	+Pizza orderPizza(String name)
-}
-class Pizzeria [[java:app.Pizzeria]] {
-}
-Pizzeria <|-- PizzeriaBrest
-class PizzeriaFactory [[java:app.PizzeriaFactory]] {
-	#{static}PizzeriaFactory uniqueInstance
-	-PizzeriaFactory()
-	+Pizzeria create(String pPizzeriaName)
-	+{static}PizzeriaFactory getInstance()
-}
-class Pizza [[java:app.Pizza]] {
-}
-PizzeriaFactory --> "1" Pizza : pizza
-class PizzeriaStrasbourg [[java:app.PizzeriaStrasbourg]] {
-	~PizzeriaStrasbourg(PizzaFactory pizzaFactory)
-	+Pizza orderPizza(String name)
-}
-class Pizzeria [[java:app.Pizzeria]] {
-}
-Pizzeria <|-- PizzeriaStrasbourg
+
+PizzeriaStrasbourg -[hidden]> Pizzeria
+PizzeriaBrest -[hidden]> Pizzeria
+
+PizzeriaBrest -[hidden]-> PizzeriaStrasbourg
+
+"PizzaTestDrive" ..> "PizzeriaFactory"
+"PizzaTestDrive" ..> "Pizza"
+"PizzeriaFactory" ..> "Pizzeria"
+"PizzaFactory" ..> "Pizza"
+"Pizzeria" ..> "Pizza" 
+
 @enduml
