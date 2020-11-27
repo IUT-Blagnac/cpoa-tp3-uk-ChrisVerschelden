@@ -7,12 +7,11 @@ public class PizzeriaBrest extends Pizzeria{
     }
 
     @Override
-    public Pizza orderPizza(String name){
+    public Pizza createPizza(String name){
         Pizza pizza = null;
         switch(name){
             case "cheese":
                 pizza = new PizzaCheeseStyleBrest();
-                this.createPizza(pizza);
                 break;
             default:
                 System.out.println("no pizza type as been specified");
